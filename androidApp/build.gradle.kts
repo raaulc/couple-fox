@@ -50,7 +50,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.2")
     
     implementation(compose.ui)
-    implementation(compose.uiToolingPreview)
+    implementation(compose.uiTooling)
     implementation(compose.material3)
     
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
