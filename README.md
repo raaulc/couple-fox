@@ -103,27 +103,58 @@ couple-fox/
 
 ## Getting Started
 
+### 🚀 Quick Start (5 minutes)
+```bash
+# Clone the repository
+git clone https://github.com/raaulc/couple-fox.git
+cd couple-fox
+
+# Run setup script
+./setup.sh
+
+# Open in Android Studio (recommended)
+open -a "Android Studio" .
+
+# Or open iOS project directly
+open iosApp/iosApp.xcodeproj
+```
+
+**📖 For detailed setup instructions, see [SETUP.md](SETUP.md)**  
+**⚡ For quick testing, see [QUICK_START.md](QUICK_START.md)**
+
 ### Prerequisites
-- Android Studio (latest stable version)
-- Xcode 15+ (for iOS development)
-- JDK 8+
-- Kotlin Multiplatform plugin
+- **macOS** (required for iOS development)
+- **Android Studio** (recommended) or Android SDK
+- **Xcode 15+** (for iOS development)
+- **Java 8+** (JDK 8, 11, or 17)
 
 ### Building the Project
 
-#### Android
+#### Method 1: Android Studio (Recommended)
+1. Open project in Android Studio
+2. Wait for Gradle sync
+3. Build shared module: `./gradlew :shared:embedAndSignAppleFrameworkForXcode`
+4. Open iOS project in Xcode
+
+#### Method 2: Command Line
 ```bash
+# Make gradlew executable
+chmod +x gradlew
+
+# Build shared module
+./gradlew :shared:embedAndSignAppleFrameworkForXcode
+
+# Build Android app
 ./gradlew :androidApp:assembleDebug
+
+# Open iOS project
+open iosApp/iosApp.xcodeproj
 ```
 
-#### iOS
-1. Open `iosApp/iosApp.xcodeproj` in Xcode
-2. Build and run the project
-
-#### Shared Module
-```bash
-./gradlew :shared:build
-```
+#### Quick Test (No Build Required)
+If you want to test the SwiftUI interface immediately:
+1. In Xcode, rename `ContentView-NoShared.swift` to `ContentView.swift`
+2. Build and run - works with mock data!
 
 ## Architecture Benefits
 
