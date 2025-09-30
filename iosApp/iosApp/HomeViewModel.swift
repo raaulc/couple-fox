@@ -2,6 +2,7 @@ import SwiftUI
 import shared
 import Combine
 
+@MainActor
 class HomeViewModel: ObservableObject {
     @Published var uiState: HomeUiState = .idle
     
@@ -15,18 +16,12 @@ class HomeViewModel: ObservableObject {
                 let result = getCurrentUserUseCase()
                 switch result {
                 case .success(let user):
-                    await MainActor.run {
-                        self.uiState = .success(user)
-                    }
+                    uiState = .success(user)
                 case .failure(let error):
-                    await MainActor.run {
-                        self.uiState = .error(error.localizedDescription)
-                    }
+                    uiState = .error(error.localizedDescription)
                 }
             } catch {
-                await MainActor.run {
-                    self.uiState = .error(error.localizedDescription)
-                }
+                uiState = .error(error.localizedDescription)
             }
         }
     }
